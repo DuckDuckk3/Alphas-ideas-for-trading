@@ -1,4 +1,5 @@
 ### This article "Returns to Buying Winners and Selling Losers: Implications for Stock Market Efficiency" of NARASIMHAN JEGADEESH and SHERIDAN TITMAN*, was published on THE JOURNAL OF FINANCE * VOL. XLVIII, NO. 1 * MARCH 1993.
+link: https://www.bauer.uh.edu/rsusmel/phd/jegadeesh-titman93.pdf
 
 ### 1. Overview
 The paper examines the predictability of stock returns based on past performance and establishes that stocks outperformed in the past tend to continue outperforming in near future. Otherwise, past losers tend to persist in underperforming ==> A phenomenon commonly referred to as "momentum".
