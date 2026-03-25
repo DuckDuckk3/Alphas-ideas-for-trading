@@ -1,0 +1,46 @@
+6. Volume Level — “attention signal”
+
+Idea: unusual volume = new information
+
+High volume → strong participation
+
+Typical form:
+
+volume / ts_mean(volume,n)
+
+Insight:
+
+Used as confirmation
+Not strong alone
+Helps pass liquidity constraints
+7. Price–Volume Interaction — “conviction”
+
+Idea: price move + volume = strength
+
+Up + high volume → real buying
+Down + high volume → real selling
+
+Typical form:
+
+volume * returns
+(volume / ts_mean(volume,n)) * returns
+
+Insight:
+
+Filters fake moves
+Adds conviction to signals
+8. Liquidity Imbalance — “pressure”
+
+Idea: imbalance between buyers and sellers
+
+High volume + up → demand
+High volume + down → supply
+
+Typical form:
+
+rank(volume / ts_mean(volume,n)) * rank(returns)
+
+Insight:
+
+Captures flow direction
+Strong in trend formation
