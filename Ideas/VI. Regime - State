@@ -1,0 +1,41 @@
+16. Volatility Regime — “market state”
+
+Idea: market behavior depends on volatility
+
+High vol → chaos
+Low vol → stability
+
+Typical form:
+
+ts_std_dev(returns,n)
+
+Insight:
+
+Used to adjust signals
+Not standalone alpha
+17. Trend Regime — “context matters”
+
+Idea: different strategies for different markets
+
+Trending → momentum
+Sideways → mean reversion
+
+Typical form:
+
+ts_sum(returns, long_horizon)
+
+Insight:
+
+Determines which signal to trust
+18. Conditional Activation — “only trade when good”
+
+Idea: act only when signal quality is high
+
+Typical form:
+
+signal * condition
+
+Insight:
+
+Reduces noise
+Improves robustness
