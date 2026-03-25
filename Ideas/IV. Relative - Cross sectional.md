@@ -1,0 +1,29 @@
+12. Relative Strength — “better than others”
+
+Idea: compare assets against each other
+
+Not absolute performance
+Relative performance
+
+Typical form:
+
+rank(signal)
+
+Insight:
+
+Mandatory in Brain
+Converts signal → tradable alpha
+13. Residual / De-meaning — “remove noise”
+
+Idea: remove common components
+
+market / sector effects
+
+Typical form:
+
+signal - ts_mean(signal,n)
+
+Insight:
+
+Improves Sharpe
+Reduces correlation
