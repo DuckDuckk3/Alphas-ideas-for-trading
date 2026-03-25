@@ -1,0 +1,1 @@
+# Alphas-ideas-for-trading
