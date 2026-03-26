@@ -1,6 +1,6 @@
-**1. positive_days** = days that returns > mean returns on a 20-day period => short_term = average returns in 5 days.
+1. positive_days = days that returns > mean returns on a 20-day period => short_term = average returns in 5 days.
 
-**2. A popular concept:** Buying pass losers and selling pass winners
+2. A popular concept: Buying pass losers and selling pass winners
 
 3. De Bondt and Thaler (1985) show that over 3-5 years holding periods stocks that performed poorly achieve higher returns than stocks that performed well over the same period.
 *long-term losers outperform the long-term winners only in Januaries
