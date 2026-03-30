@@ -81,7 +81,7 @@ Momentum vs VWAP over last 30 days:
 Multi-day trend reversal, fitness low:  
 `(((1.0 - rank(((sign((close - ts_delay(close, 1))) + sign((ts_delay(close, 1) - ts_delay(close, 2)))) + sign((ts_delay(close, 2) - ts_delay(close, 3)))))) * ts_sum(volume, 5)) / ts_sum(volume, 20))`
 
-Basics comparision (nearly 40% returns but low sharpe):
-`rank(ebit / capex)
-+
-rank(operating_income / debt)`
+Basics comparision (nearly 40% returns but low sharpe):  
+`rank(ebit / capex)  
++  
+rank(operating_income / debt)`  
