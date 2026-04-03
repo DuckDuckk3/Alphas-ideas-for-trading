@@ -65,3 +65,22 @@ Alpha Formula: alpha = rank(1 / market_cap)
 Explanation:
 - Rank stocks based on the inverse of their market capitalization.
 - Smaller ranks (larger values) favor smaller companies with better return potential.
+
+
+-rank((close - open) / (high - low))
+WE CAN COMBINE: pv =
+rank(volume / ts_mean(volume,20));
+
+price_pressure =
+-rank((close - open) / (high - low ));
+
+alpha =
+0.6 * price_pressure
++
+0.4 * pv;
+OR ANOTHER VERSION: 
+
+
+-1 * ts_rank(rank(low),9)
+
+
