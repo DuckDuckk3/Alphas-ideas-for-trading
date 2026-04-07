@@ -89,3 +89,10 @@ OR ANOTHER VERSION:
 alpha = rank(ts_sum(ts_delta(vec_avg(scl12_alltype_buzzvec), 3), 60)) > 0.5
         ? rank(ts_delta(vec_avg(scl12_alltype_buzzvec), 3))
         : rank(-ts_delta(close, 2));s
+clv = ((close - low) - (high - close)) / (high - low);
+
+vol_signal = -clv * signed_power(volume / ts_mean(volume, 20), 1.2);
+
+alpha = rank(ts_mean(vol_signal, 3)) 
+        + rank(-ts_delta(close, 1)) 
+        + rank(ts_delta(news_cap, 1)); turnover too high but good overall
