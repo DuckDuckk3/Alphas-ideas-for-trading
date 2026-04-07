@@ -85,3 +85,37 @@ Basics comparision (nearly 40% returns but low sharpe):
 `rank(ebit / capex)  
 +  
 rank(operating_income / debt)`  
+
+```
+clv = ((close - low) - (high - close)) / (high - low);
+
+a1 = rank(
+    ts_mean(
+        -clv * signed_power(volume / ts_mean(volume, 20), 1.2),
+        3
+    )
+);
+```
+a2 = rank(-ts_delta(close, 1)) 
+     + 0.5 * rank(-ts_delta(close, 3));
+
+```
+clv = ((close - low) - (high - close)) / (high - low);
+
+flow = -clv * (volume / ts_mean(volume, 20));
+
+a4 = rank(ts_mean(flow, 3))
+     * rank(-ts_delta(close, 1));
+```
+
+```
+clv = ((close - low) - (high - close)) / (high - low);
+signal = rank(ts_mean(-clv * signed_power(volume / ts_mean(volume, 20), 1.2), 3)) 
+         + rank(-ts_delta(close, 1));
+
+a5 = trade_when(
+    volume > ts_mean(volume, 20),
+    signal,
+    -1
+);
+```
