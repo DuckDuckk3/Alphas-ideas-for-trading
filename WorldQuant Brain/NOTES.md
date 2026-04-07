@@ -82,5 +82,6 @@ OR ANOTHER VERSION:
 
 
 -1 * ts_rank(rank(low),9)
+- rank(ts_corr(close, ts_mean(volume, 50),8)) < rank(ts_delta(close,2))
 
-
+(rank(high * low) - rank(vwap)) * rank(sales / assets) * rank(volume / ts_mean(volume, 20))
