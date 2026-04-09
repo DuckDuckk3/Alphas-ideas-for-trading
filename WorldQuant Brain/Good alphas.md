@@ -119,3 +119,4 @@ a5 = trade_when(
     -1
 );
 ```
+ts_arg_max(rank(ts_corr(rank(volume), rank(vwap),5)),5)
