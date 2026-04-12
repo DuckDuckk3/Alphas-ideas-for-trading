@@ -127,4 +127,6 @@ ts_arg_max(rank(ts_corr(rank(volume), rank(vwap),5)),5)
 
 rank(group_neutralize(((ts_mean(ts_delay(close, 5), 20) - close) * ts_rank(ts_corr(close, volume, 2), 5)), subindustry))
 
+rank(ts_decay_linear(ts_corr(vwap, ts_mean(volume, 50),9),8)) - rank(ts_decay_linear(ts_delta(close,3),6))
+
 
