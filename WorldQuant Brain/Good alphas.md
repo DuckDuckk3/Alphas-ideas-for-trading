@@ -129,4 +129,5 @@ rank(group_neutralize(((ts_mean(ts_delay(close, 5), 20) - close) * ts_rank(ts_co
 
 rank(ts_decay_linear(ts_corr(vwap, ts_mean(volume, 50),9),8)) - rank(ts_decay_linear(ts_delta(close,3),6))
 
+group_neutralize(ts_decay_linear(rank(-1 * ts_delta(close, 5)), 10), subindustry)
 
