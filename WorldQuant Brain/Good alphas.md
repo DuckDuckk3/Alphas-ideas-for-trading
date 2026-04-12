@@ -120,3 +120,11 @@ a5 = trade_when(
 );
 ```
 ts_arg_max(rank(ts_corr(rank(volume), rank(vwap),5)),5)
+
+((-1 * ((low - close) * (open^5))) / ((low - high) * (close^5)))
+
+-1 * ts_delta(((close - low) - (high - close)) / (close - low),9) This is good but too high turnover
+
+rank(group_neutralize(((ts_mean(ts_delay(close, 5), 20) - close) * ts_rank(ts_corr(close, volume, 2), 5)), subindustry))
+
+
