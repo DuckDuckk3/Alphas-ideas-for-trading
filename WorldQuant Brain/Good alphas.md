@@ -131,3 +131,13 @@ rank(ts_decay_linear(ts_corr(vwap, ts_mean(volume, 50),9),8)) - rank(ts_decay_li
 
 group_neutralize(ts_decay_linear(rank(-1 * ts_delta(close, 5)), 10), subindustry)
 
+```
+peer_ret = group_neutralize(returns, industry);
+
+alpha = rank(-ts_delay(ts_mean(peer_ret, 3), 1));
+```
+```
+centrality = ts_rank(news_cap, 10);
+
+alpha = rank(-ts_mean(centrality * returns, 3));
+```
