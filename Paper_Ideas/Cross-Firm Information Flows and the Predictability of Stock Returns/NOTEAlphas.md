@@ -44,7 +44,7 @@ Stock “ở trung tâm news” dẫn dắt
 ```
 centrality = ts_rank(news_cap, 10);
 
-alpha = rank(ts_mean(centrality * returns, 3));
+alpha = rank(-ts_mean(centrality * returns, 3));
 ```
 Ý nghĩa:
 News nhiều liên tục → central node
@@ -58,5 +58,5 @@ attention = ts_rank(news_cap, 20);
 
 signal = 0.6 * peer + 0.4 * (attention * returns);
 
-alpha = rank(ts_mean(signal, 5));
+alpha = rank(-ts_mean(signal, 5));
 ```
