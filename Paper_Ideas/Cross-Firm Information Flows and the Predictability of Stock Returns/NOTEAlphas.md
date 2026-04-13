@@ -1,6 +1,6 @@
 1. Basic Bellwether (Lead-Lag Return)
 Stock khác dẫn dắt return của stock hiện tại  
-`alpha = rank(ts_mean(indneutralize(returns, industry), 3));`  
+`alpha = rank(-ts_mean(indneutralize(returns, industry), 3));`  
 Idea:
 Lấy return ngành (proxy cho bellwether)
 Giả định industry leaders phản ứng trước
@@ -12,7 +12,7 @@ attention = news_cap;
 
 leader_signal = ts_rank(attention, 20) * returns;
 
-alpha = rank(ts_mean(leader_signal, 3));
+alpha = rank(-ts_mean(leader_signal, 3));
 ```
 Insight:
 Stocks có news nhiều → phản ứng nhanh hơn
@@ -33,7 +33,7 @@ Dùng “network” đơn giản qua industry
 ```
 peer_ret = indneutralize(returns, industry);
 
-alpha = rank(ts_delay(ts_mean(peer_ret, 3), 1));
+alpha = rank(-ts_delay(ts_mean(peer_ret, 3), 1));
 ```
 Idea:
 Return của peers hôm qua → predict hôm nay
