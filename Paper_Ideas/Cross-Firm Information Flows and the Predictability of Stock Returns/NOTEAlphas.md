@@ -21,8 +21,6 @@ Dùng chúng làm predictor
 News của 1 stock lan sang peer stocks
 
 ```
-clv = ((close - low) - (high - close)) / (high - low);
-
 news_shock = news_cap * abs(returns);
 
 alpha = rank(ts_mean(indneutralize(news_shock, industry), 5));
