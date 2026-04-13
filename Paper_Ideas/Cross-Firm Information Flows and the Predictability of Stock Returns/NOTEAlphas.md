@@ -1,6 +1,6 @@
 1. Basic Bellwether (Lead-Lag Return)
-Stock khác dẫn dắt return của stock hiện tại
-`alpha = rank(ts_mean(indneutralize(returns, industry), 3));`
+Stock khác dẫn dắt return của stock hiện tại  
+`alpha = rank(ts_mean(indneutralize(returns, industry), 3));`  
 Idea:
 Lấy return ngành (proxy cho bellwether)
 Giả định industry leaders phản ứng trước
