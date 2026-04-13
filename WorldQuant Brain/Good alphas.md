@@ -141,3 +141,9 @@ centrality = ts_rank(news_cap, 10);
 
 alpha = rank(-ts_mean(centrality * returns, 3));
 ```
+```
+skew = implied_volatility_put_30 - implied_volatility_call_30;
+
+alpha = -ts_decay_linear(rank(ts_mean(skew, 5)), 20);
+```
+Very good but high sub-universe shape
