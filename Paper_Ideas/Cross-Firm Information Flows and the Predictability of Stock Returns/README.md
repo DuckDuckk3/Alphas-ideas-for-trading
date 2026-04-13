@@ -22,3 +22,5 @@ Link : `https://scispace.com/pdf/cross-firm-information-flows-and-the-predictabi
 Page 1 - Para 2  
 Page 3 - Para 4  
 Page 15 - Para 3  
+
+### NOTE: Most of these alphas work well with Neutralization: Industry
