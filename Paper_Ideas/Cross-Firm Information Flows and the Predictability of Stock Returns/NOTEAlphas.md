@@ -83,7 +83,7 @@ alpha = rank(ts_delay(leader_surprise, 1));
 Major announcements create high volatility.
 ```
 leader_vol = group_mean(ts_std_dev(returns, 10), 1, subindustry);
-signal = ts_delay(group_mean(returns, subindustry, 1), 1);
+signal = ts_delay(group_mean(returns, 1, subindustry), 1);
 alpha = rank(signal * leader_vol);
 ```
 5️. Lagging Follower Alpha
