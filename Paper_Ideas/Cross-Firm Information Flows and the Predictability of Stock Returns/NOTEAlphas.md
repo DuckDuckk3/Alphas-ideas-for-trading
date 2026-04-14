@@ -1,3 +1,4 @@
+## Idea 1:
 1. Basic Bellwether (Lead-Lag Return)
 Stock khác dẫn dắt return của stock hiện tại  
 `alpha = rank(-ts_mean(indneutralize(returns, industry), 3));`  
@@ -60,3 +61,39 @@ signal = 0.6 * peer + 0.4 * (attention * returns);
 
 alpha = rank(-ts_mean(signal, 5));
 ```
+## Idea 2:
+1. Industry Lead–Lag Alpha
+Industry leaders move first, followers catch up.
+```
+leader = group_mean(returns, subindustry, 1);
+alpha = rank(ts_delay(leader, 1) - returns);
+```
+2️. Leader Momentum Spillover
+```
+leader = group_mean(ts_mean(returns, 5), subindustry, 1);
+alpha = rank(ts_delay(leader, 1));
+```
+3️. Leader Surprise Signal
+Unexpected industry returns propagate slowly.
+```
+leader_surprise = group_mean(returns - ts_mean(returns, 20), subindustry, 1);
+alpha = rank(ts_delay(leader_surprise, 1));
+```
+4️. Leader Volatility Attention
+Major announcements create high volatility.
+```
+leader_vol = group_mean(ts_std_dev(returns, 10), subindustry, 1);
+signal = ts_delay(group_mean(returns, subindustry, 1), 1);
+alpha = rank(signal * leader_vol);
+```
+5️. Lagging Follower Alpha
+```
+leader = ts_delay(group_mean(returns, subindustry, 1), 1);
+alpha = rank(leader - returns);
+```
+6️. Market Leader Signal (Large Cap Leaders)
+```
+leader = group_mean(returns * rank(cap), market, 1);
+alpha = rank(ts_delay(leader, 1));
+```
+
