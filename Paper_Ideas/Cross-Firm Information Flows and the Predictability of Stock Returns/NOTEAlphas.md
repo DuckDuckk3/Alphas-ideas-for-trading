@@ -97,3 +97,52 @@ leader = group_mean(returns * rank(cap), 1, market);
 alpha = rank(ts_delay(leader, 1));
 ```
 
+Idea 3:
+```
+industry_ret = group_mean(returns, 1, industry);
+
+alpha = ts_decay_linear(rank(industry_ret - returns), 15);
+```
+```
+leader_strength = ts_rank(returns, 5);
+
+alpha = ts_mean(leader_strength, 20);
+```
+Idea A: The Small-to-Large Sector Lead
+Instead of using the whole subindustry mean as a leader, we isolate the smallest stocks in that subindustry to lead the larger ones.
+
+Alpha Logic: Calculate the average return of the bottom 20% of stocks by market cap within a subindustry. Apply this as a delayed signal to the top 20% of stocks by market cap.
+```
+// Identify small stocks (Bottom 20% by Cap)
+is_small = rank(cap) < 0.2;
+// Mean return of small stocks in the subindustry
+small_leader = group_mean(returns, is_small, subindustry);
+// Apply to large stocks (Top 20%)
+alpha = trade_when(rank(cap) > 0.8, ts_delay(small_leader, 1) - returns, -1);
+Explanation: This captures the "Information Centrality" of smaller firms mentioned in Panel A. We bet that large caps will eventually mean-revert toward the path set by their smaller, more nimble industry peers.
+```
+Idea B: Cross-Industry Correlation Lead (The "Supply Chain" Alpha)
+This targets the finding in Panel B that leaders can belong to different industries.
+
+Alpha Logic: Use a "proxy" industry that typically moves first (e.g., Semiconductors) to lead a "follower" industry (e.g., Software or Consumer Electronics).
+```
+// Calculate mean returns for a specific 'Leader' Sector (e.g., Sector 10)
+sector_leader = group_mean(returns, 1, sector == 10);
+// Apply this signal to stocks in a different 'Follower' Sector (e.g., Sector 20)
+raw_signal = ts_delay(sector_leader, 1);
+alpha = trade_when(sector == 20, rank(raw_signal - returns), -1);
+```
+Explanation: This exploits economic linkages. If the "source" industry moves, the connected industry follows. By sorting within the follower industry, we capture the specific sensitivities mentioned in the text.
+
+Idea C: Idiosyncratic Leader Momentum
+Instead of using industry means, identify specific "central" stocks based on high residual returns (returns not explained by the market).
+
+Alpha Logic: Identify stocks with the highest idiosyncratic volatility (the "news centers") and use their delayed returns to predict the rest of the universe.
+```
+// Find stocks with high idiosyncratic moves (proxy for 'news center')
+news_center = rank(abs(returns - group_mean(returns, 1, industry))) > 0.9;
+// Use their delayed return as a trend signal for the industry
+leader_signal = group_mean(returns, news_center, industry);
+alpha = ts_decay_linear(rank(ts_delay(leader_signal, 1) - returns), 5);
+```
+Explanation: This targets the "center of relevant news" concept. If the most volatile/active stocks in an industry move, the "quiet" stocks in that same industry are likely to lag and eventually follow.
