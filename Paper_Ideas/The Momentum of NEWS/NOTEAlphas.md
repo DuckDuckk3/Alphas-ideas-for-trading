@@ -17,7 +17,7 @@
 - Expansion: rp_css_assets represents the number of news assets/stories. A high fscore_momentum is more statistically significant if it is backed by many news articles (rp_css_assets), effectively selecting the "strongest" stocks in the top quintile.
 ### 4. Immediate Disclosure Breakout (The "Rush" Signal)  
 - Hypothesis: Managers "immediately reveal good news." A sudden surge in sentiment compared to its historical baseline acts as a signal for an immediate long position.
-- Expression:C// Measuring current sentiment relative to its historical rank (20 days)
+- Expression: Measuring current sentiment relative to its historical rank (20 days)  
 `rank(scl12_sentiment - ts_rank(scl12_sentiment, 20))`
 - Expansion: ts_rank compares the current sentiment to its own 20-day history. If today's sentiment is significantly higher than its historical distribution, it captures the "immediate disclosure" behavior described in the information environment hypothesis.
 ### 5. News-Price Divergence (The "Alpha" Filter)
