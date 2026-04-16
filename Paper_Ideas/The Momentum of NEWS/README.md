@@ -14,6 +14,6 @@ Page 44 paragraph 1
 | ravenpack | news score | rp_css_assets |
 | Price Volume Data | return predictability | returns |
 
-Author: Ying Wang, Bohui Zhang, Xiaoneng Zhu
-
-Year : 2018
+Author: Ying Wang, Bohui Zhang, Xiaoneng Zhu  
+Link: `https://silc.shu.edu.cn/Portals/646/content/NewMoM.pdf`  
+Year : 2018  
