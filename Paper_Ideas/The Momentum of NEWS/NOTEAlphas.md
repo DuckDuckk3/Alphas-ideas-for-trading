@@ -181,7 +181,7 @@ rank(ts_mean(volume,5)) +
 0.5 * rank(ts_delta(fnd2_eps,252))
 ```
 
-# 8. Key Insight
+### Key Insight
 
 Most academic finance factors **cannot be used directly** in BRAIN.
 
