@@ -26,6 +26,27 @@
 `group_neutralize(rank(fscore_momentum) - rank(ts_mean(returns, 3)), industry)`
 - Expansion: This identifies "undervalued" news momentum. We subtract the recent 3-day return rank from the news momentum rank. We want to buy stocks where the news is great, but the market hasn't fully "bought in" yet, capturing the lag in information dissemination.  
 
+1) Core news momentum  
+rank(ts_decay_linear(news_sentiment, 20))  
+2) Short-term continuation / recent acceleration  
+rank(ts_mean(news_sentiment, 5) - ts_mean(news_sentiment, 20))  
+3) Smoother version   
+ts_decay_linear(rank(ts_mean(news_sentiment, 10)), 10)   
+4) Momentum  
+alpha = rank(ts_mean(news_sentiment, 5)) - rank(ts_mean(news_sentiment < 0, 5))  
+5) Good-minus-bad style, positive/negative news  
+alpha = rank(ts_mean(pos_news_sentiment, 10)) - rank(ts_mean(neg_news_sentiment, 10))  
+6) News momentum confirmed by fundamentals  
+alpha = rank(ts_mean(news_sentiment, 10)) + 0.5 * rank(ts_delta(earnings_estimate, 20))  
+7) News momentum + volume/attention  
+alpha = rank(ts_mean(news_sentiment, 10)) * rank(ts_mean(volume, 20))  
+8) Mean-reversion   
+alpha = -rank(ts_delta(ts_mean(news_sentiment, 5), 5))  
+
+alpha1 = rank(ts_decay_linear(news_sentiment, 20))  
+alpha2 = rank(ts_mean(news_sentiment, 5) - ts_mean(news_sentiment, 20))  
+alpha3 = rank(ts_mean(news_sentiment, 10)) + 0.5 * rank(ts_delta(earnings_estimate, 20))  
+
 ### Critical Operators for BRAIN Optimization
 - `rank(x):` Cross-sectional ranking. News scores have different scales; ranking them $[0, 1]$ makes them comparable.
 - `group_neutralize(x, g):` Neutralization. News is often biased by sector (e.g., Tech has more news than Utilities). This removes that bias.
