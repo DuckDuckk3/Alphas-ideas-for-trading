@@ -1,4 +1,4 @@
-## Idea 1:
+# Idea 1:
 ### 1. The Fundamental Persistence    
 - Hypothesis: Based on the Fundamental Hypothesis, earnings are persistent, leading to a steady, long-term stream of positive news. We capture this by smoothing sentiment over a typical earnings cycle (approx. 20 trading days).  
 - Expression: Capturing the persistent "Fundamental" trend while reducing noise
@@ -26,26 +26,215 @@
 `group_neutralize(rank(fscore_momentum) - rank(ts_mean(returns, 3)), industry)`
 - Expansion: This identifies "undervalued" news momentum. We subtract the recent 3-day return rank from the news momentum rank. We want to buy stocks where the news is great, but the market hasn't fully "bought in" yet, capturing the lag in information dissemination.  
 
-1) Core news momentum  
-rank(ts_decay_linear(news_sentiment, 20))  
-2) Short-term continuation / recent acceleration  
-rank(ts_mean(news_sentiment, 5) - ts_mean(news_sentiment, 20))  
-3) Smoother version   
-ts_decay_linear(rank(ts_mean(news_sentiment, 10)), 10)   
-4) Momentum  
-alpha = rank(ts_mean(news_sentiment, 5)) - rank(ts_mean(news_sentiment < 0, 5))  
-5) Good-minus-bad style, positive/negative news  
-alpha = rank(ts_mean(pos_news_sentiment, 10)) - rank(ts_mean(neg_news_sentiment, 10))  
-6) News momentum confirmed by fundamentals  
-alpha = rank(ts_mean(news_sentiment, 10)) + 0.5 * rank(ts_delta(earnings_estimate, 20))  
-7) News momentum + volume/attention  
-alpha = rank(ts_mean(news_sentiment, 10)) * rank(ts_mean(volume, 20))  
-8) Mean-reversion   
-alpha = -rank(ts_delta(ts_mean(news_sentiment, 5), 5))  
+### Mapping Paper Concepts to BRAIN Data
 
-alpha1 = rank(ts_decay_linear(news_sentiment, 20))  
-alpha2 = rank(ts_mean(news_sentiment, 5) - ts_mean(news_sentiment, 20))  
-alpha3 = rank(ts_mean(news_sentiment, 10)) + 0.5 * rank(ts_delta(earnings_estimate, 20))  
+| Paper Concept | Interpretation | BRAIN Proxy |
+|---|---|---|
+| positive / negative news | market reaction | short-term return |
+| news clustering | repeated information arrival | volume spikes |
+| information environment | steady information flow | trend + low volatility |
+| fundamental persistence | earnings persistence | EPS / profitability trend |
+
+---
+
+### Alphas
+
+Typical workflow:
+1. detect **information shock**
+2. measure **continuation**
+3. smooth signal
+4. neutralize sector risk
+
+### Alpha Candidates
+
+#### Alpha 1 — Price Reaction Momentum
+
+Proxy for **positive news continuation**
+
+```
+alpha =
+rank(ts_mean(close / delay(close,1) - 1, 5))
+```
+
+Interpretation:
+
+Recent abnormal returns imply **positive information flow**.
+
+---
+
+#### Alpha 2 — Price vs VWAP Signal
+
+Detects sustained buying pressure after information arrival.
+
+```
+alpha =
+rank(ts_mean(close - vwap, 5))
+```
+
+Logic:
+
+After positive news:
+
+```
+close > vwap
+```
+
+for multiple days.
+
+---
+
+#### Alpha 3 — News Shock Proxy (Price + Volume)
+
+News events usually cause **both price movement and volume spikes**.
+
+```
+alpha =
+rank(ts_delta(close,5)) *
+rank(ts_mean(volume,5))
+```
+
+Interpretation:
+
+Large price movement + high volume  
+→ possible information shock.
+
+---
+
+#### Alpha 4 — Information Environment Proxy
+
+Firms with stable information environments tend to show **persistent trends with lower noise**.
+
+```
+alpha =
+rank(ts_mean(close,20)) -
+rank(ts_std_dev(close,20))
+```
+
+Logic:
+
+Trend strength minus volatility.
+
+#### Alpha 5 — Fundamental Persistence (EPS)
+Paper suggests news persistence reflects **persistent fundamentals**.  
+```
+alpha =
+rank(ts_delta(fnd2_eps,252))
+```
+Interpretation:
+Companies with improving earnings generate **continuous positive news**.
+
+#### Alpha 6 — Earnings Acceleration
+```
+alpha =
+rank(ts_mean(fnd2_eps,4)) -
+rank(ts_mean(fnd2_eps,12))
+```
+Detects improving earnings trend.
+
+#### Alpha 7 — News Clustering via Volume
+News tends to arrive in **clusters**.
+```
+alpha =
+rank(ts_mean(volume,5) - ts_mean(volume,20))
+```
+Interpretation:
+Short-term attention surge.
+
+### Recommended Base Signals
+
+Three signals most consistent with the paper:
+### Signal A — News Shock
+```
+alpha =
+rank(ts_delta(close,5)) *
+rank(ts_mean(volume,5))
+```
+### Signal B — News Momentum
+```
+alpha =
+rank(ts_mean(close,5) - ts_mean(close,20))
+```
+### Signal C — Fundamental Persistence
+```
+alpha =
+rank(ts_delta(fnd2_eps,252))
+```
+### Possible Improvements
+
+To reduce turnover and noise:
+### Exponential decay
+
+```
+ts_decay_linear(signal, 10)
+```
+### Liquidity filter
+```
+volume > ts_mean(volume,20)
+```
+
+### Combined alpha
+
+```
+alpha =
+rank(ts_delta(close,5)) *
+rank(ts_mean(volume,5)) +
+0.5 * rank(ts_delta(fnd2_eps,252))
+```
+
+# 8. Key Insight
+
+Most academic finance factors **cannot be used directly** in BRAIN.
+
+Instead we must translate them into **observable market proxies**.
+
+Example:
+
+| Academic Variable | BRAIN Proxy |
+|---|---|
+news sentiment | return + volume |
+investor attention | volume spike |
+earnings news | EPS change |
+information flow | volatility |
+
+### Submission Tips
+
+Before submitting:
+
+- smooth signals
+- reduce turnover
+- neutralize industries
+- test multiple decay windows
+
+Typical enhancement:
+
+```
+alpha =
+group_neutralize(
+    ts_decay_linear(rank(ts_mean(close,5)-ts_mean(close,20)),10),
+    subindustry
+)
+```
+
+---
+
+### Summary
+
+The **Momentum of News** effect can be implemented in BRAIN by constructing proxies for information flow:
+
+Main approaches:
+
+1. **Price reaction continuation**
+2. **Volume-based attention signals**
+3. **Fundamental persistence**
+
+Combining these signals often produces stronger alphas.
+
+```
+alpha =
+rank(ts_delta(close,5)) *
+rank(ts_mean(volume,5)) +
+rank(ts_delta(fnd2_eps,252))
+```
 
 ### Critical Operators for BRAIN Optimization
 - `rank(x):` Cross-sectional ranking. News scores have different scales; ranking them $[0, 1]$ makes them comparable.
