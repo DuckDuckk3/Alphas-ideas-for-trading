@@ -79,11 +79,11 @@ alpha =
 +
 0.4 * pv;
 OR ANOTHER VERSION: 
-
-
+ 
+```
 -1 * ts_rank(rank(low),9)
 - rank(ts_corr(close, ts_mean(volume, 50),8)) < rank(ts_delta(close,2))
-
+```
 (rank(high * low) - rank(vwap)) * rank(sales / assets) * rank(volume / ts_mean(volume, 20))
 
 alpha = rank(ts_sum(ts_delta(vec_avg(scl12_alltype_buzzvec), 3), 60)) > 0.5
