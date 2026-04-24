@@ -23,10 +23,3 @@ Review performance metrics like Sharpe Ratio, Return, Turnover, and Drawdown to 
 To select the best alphas for a SuperAlpha with low correlation and high fitness, focus on diversity and complementarity. Analyze the correlation matrix of candidate alphas and select those with low pairwise correlations (<0.2) to minimize redundancy. Prioritize alphas with consistently high IC, Sharpe ratio, and return spread across backtests. Ensure regional or factor-neutralization (e.g., subindustry, size) to avoid hidden biases. Use techniques like hierarchical clustering to group similar alphas and choose representatives from each cluster. Regularly evaluate production performance to ensure robustness. Balancing high fitness with low correlation is key to building an effective SuperAlpha.
 
 I’d say the key with SuperAlpha is to be picky about which alphas you keep (look at stability and correlation, not just mean IC), and then combine them more smartly than equal weighting — rank averaging, IC-weighting with shrinkage, or PCA can all help. Neutralization doesn’t have to be all-or-nothing, partial works fine, and decay length should follow your IC profile. Finally, don’t forget turnover: costs matter, and keeping it in a moderate range usually makes out-of-sample results look a lot better.
-
-Hi,
-
- alphas from the "Model" data category where:
-Turnover is less than 18%.
-Self-correlation is less than 60%.
-This ensures a curated selection of alphas with lower turnover and minimal self-correlation from the "Model" category, while excluding your own pool for diverse signals.
