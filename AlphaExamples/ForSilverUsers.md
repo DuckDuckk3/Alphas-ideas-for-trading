@@ -10,7 +10,7 @@ Can using custom neutralization on the Alpha based on self-created groups (like 
 | Region | Universe | Language | Decay | Delay | Truncation | Neutralization | Pasteurization | Lookback | Max Trade | Max Position |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **USA** | TOP3000 | Fast Expression | 4 | 1 | 0.08 | Market | On | — | OFF | OFF |
-
+  
 ## 2. 6-Month Call–Put Volatility Skew
 ### Hypothesis
 When call implied volatility is higher than put implied volatility relative to average ATM volatility, options traders may be more focused on upside moves than downside risk, indicating bullish sentiment.
