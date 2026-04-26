@@ -18,5 +18,5 @@ Page 27 paragraph 3
 
 Author: Stephen R. Foerster, John Tsagarelis, Grant Wang
 
-Year: 2017
+Year: 2017  
 Link: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2472571
