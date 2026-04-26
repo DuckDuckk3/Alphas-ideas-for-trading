@@ -4,9 +4,9 @@ Although various income statement–based measures predict the cross section of 
 
 ## Key ideas:
 
-Page 18 paragraph 1
-Page 25 paragraph 1
-Page 27 paragraph 3
+Page 18 paragraph 1  
+Page 25 paragraph 1  
+Page 27 paragraph 3  
 
 ## Useful datafields on BRAIN:
 
