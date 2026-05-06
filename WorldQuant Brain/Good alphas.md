@@ -147,3 +147,35 @@ skew = implied_volatility_put_30 - implied_volatility_call_30;
 alpha = -ts_decay_linear(rank(ts_mean(skew, 5)), 20);
 ```
 Very good but high sub-universe shape
+
+### Fama-French five factor model
+```
+// 1. Size (SMB - Small Minus Big): Ưu tiên vốn hóa nhỏ
+f_size = rank(-cap); 
+
+// 2. Value (HML - High Minus Low): P/B thấp (Book-to-Market cao)
+f_value = rank(book_value / cap);
+
+// 3. Profitability (RMW - Robust Minus Weak): Lợi nhuận hoạt động trên tài sản
+f_profit = rank(operating_income / assets);
+
+// 4. Investment (CMA - Conservative Minus Aggressive): Tăng trưởng tài sản thấp
+// Những doanh nghiệp đầu tư quá ồ ạt thường có hiệu suất kém hơn trong dài hạn
+f_inv = rank(-(ts_delta(assets, 252) / assets));
+
+// 5. Market / Momentum (Yếu tố bổ trợ để tạo "Strong Long")
+// FF5 gốc dùng Market Beta, nhưng trong Alpha ta nên dùng Momentum 1 năm 
+// để lọc ra những mã thực sự đang "chạy"
+f_mom = rank(ts_delta(close, 252) / ts_delay(close, 20));
+
+// TỔNG HỢP: Kết hợp các nhân tố (Equal Weight)
+raw_ff5 = f_size + f_value + f_profit + f_inv + f_mom;
+
+// FILTER: Chỉ Long khi có sự đồng thuận từ Momentum và Profitability (Tín hiệu Long mạnh)
+// Điều này sẽ cắt giảm Turnover cực mạnh vì bạn chỉ vào lệnh khi "Thiên thời - Địa lợi"
+alpha_ff5 = if_else(
+    (f_mom > 0.7) && (f_profit > 0.6), 
+    group_rank(raw_ff5, subindustry), 
+    0
+);
+```
