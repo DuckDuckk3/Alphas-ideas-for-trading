@@ -1,4 +1,4 @@
-## Idea 3: 
+## Idea 3: Industry-wide merger sentiment creates a predictable, short-term performance gap that is most profitable when captured through a monthly long-short strategy before the signal naturally decays.
 ### Page 3 - Paragraph 2
 Each month, we form portfolios of industries depending on the sign of the average announcement return, and examine the profits to a zero cost investment strategy taking a long
 position in all industries with positive average announcement returns and taking a short position in all industries with negative announcement returns. The results indicate that the effect is
