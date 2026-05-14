@@ -29,4 +29,9 @@ Volume
 volume
 
 Company Fundamental Data for Equity
+| Term          | Datafield        | Dataset                               |
+|---------------|------------------|----------------------------------------|
+| Price    | cashflow         | Company Fundamental Data for Equity     |
+| mdf_pri         | enterprise_value | Company Fundamental Data for Equity     |
+| volume  | mdf_gpr          | Model Data                             |
 
