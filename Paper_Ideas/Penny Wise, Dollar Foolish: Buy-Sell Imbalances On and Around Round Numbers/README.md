@@ -6,10 +6,10 @@ Year: 2011
 Link: https://ssrn.com/abstract=1569922  
 
 ## Key ideas:
-Page 3 Paragraph 1
-Page 3 Paragraph 2
-Page 5 Paragraph 2
-Classic introduction and research on integer effect in the stock market, suitable to develop D0 alphas across all regions
+Page 3 Paragraph 1  
+Page 3 Paragraph 2  
+Page 5 Paragraph 2  
+Classic introduction and research on integer effect in the stock market, suitable to develop D0 alphas across all regions  
 
 ## Useful datafields on BRAIN:
 | Term          | Datafield        | Dataset                               |
