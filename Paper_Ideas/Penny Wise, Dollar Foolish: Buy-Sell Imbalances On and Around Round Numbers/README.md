@@ -12,23 +12,6 @@ Page 5 Paragraph 2
 Classic introduction and research on integer effect in the stock market, suitable to develop D0 alphas across all regions
 
 ## Useful datafields on BRAIN:
-Term
-
-Datafield
-
-Dataset
-
-Price
-
-mdf_pri
-
-Model Data
-
-Volume
-
-volume
-
-Company Fundamental Data for Equity
 | Term          | Datafield        | Dataset                               |
 |---------------|------------------|----------------------------------------|
 | Price    | mdf_pri        | Model Data     |
