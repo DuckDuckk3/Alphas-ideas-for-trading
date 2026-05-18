@@ -1,4 +1,4 @@
-#
+# Unconditional 24-hour returns
 ## Page 3 Paragraph 2
 Next, we examine unconditional 24-hour returns. We compute both the trade price returns and the
 midpoint returns that result from buying whenever buy trades are observed at a .XX price point and the
