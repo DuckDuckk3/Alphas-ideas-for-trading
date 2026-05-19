@@ -179,3 +179,11 @@ alpha_ff5 = if_else(
     0
 );
 ```
+
+```
+-rank(
+    ((high - close) / (high - low))
+    *
+    returns
+)
+```
