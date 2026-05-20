@@ -187,3 +187,13 @@ alpha_ff5 = if_else(
     returns
 )
 ```
+
+Very nice combine alpha that acts as a filter:
+```
+res_mom =
+-ts_regression(
+    returns,
+    group_mean(returns,1, subindustry),
+    60
+);
+```
