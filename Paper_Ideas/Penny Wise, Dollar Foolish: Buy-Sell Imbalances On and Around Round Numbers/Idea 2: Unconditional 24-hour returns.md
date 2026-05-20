@@ -8,3 +8,16 @@ position is closed `24 hours later`. We find a `systematic pattern` in returns a
 thresholds`: `integers`, `half-dollars`, `quarters`, `dimes`, and `nickels`. Specifically, we find that that `liquidity
 demanders` who `buy (sell) below` the threshold have `lower (higher) returns`, and `liquidity demanders` who
 `sell (buy)` `above` the threshold have `lower (higher) returns`.
+
+---
+
+## Explanation (In simple terms)
+
+---
+
+## Key concepts 
+
+---
+
+## Ideas
+
