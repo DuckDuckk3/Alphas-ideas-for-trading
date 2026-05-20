@@ -205,3 +205,5 @@ overnight = open / ts_delay(close,1) - 1;
 intraday = close / open - 1;
 -rank(-overnight) * rank(intraday)
 ```
+## VWAP Deviation
+`-scale((close - vwap)/vwap)`
