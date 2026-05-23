@@ -212,7 +212,7 @@ intraday = close / open - 1;
 -ts_zscore(
     (close-vwap)/vwap,
     20
-);`
+);`  
 `b =
 -rank(
     ((close-vwap)/vwap)
