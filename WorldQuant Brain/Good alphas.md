@@ -207,3 +207,15 @@ intraday = close / open - 1;
 ```
 ## VWAP Deviation
 `-scale((close - vwap)/vwap)`
+
+`b =
+-ts_zscore(
+    (close-vwap)/vwap,
+    20
+);`
+`b =
+-rank(
+    ((close-vwap)/vwap)
+    *
+    (volume/adv20)
+);`
