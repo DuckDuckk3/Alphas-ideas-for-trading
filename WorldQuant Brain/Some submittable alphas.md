@@ -4,7 +4,7 @@ These alphas quality are almost average; you can combine or optimize them to gai
 Explanation: Measures where the close is relative to the high-low range, weighted by recent volume. Combines short-term price reversal with volume effects.  
 `clv = ((close - low) - (high - close)) / (high - low);`  
 `rank(ts_mean(-clv * (volume / ts_mean(volume,20)), 3)) * rank(-ts_delta(close,3))`
-
+ 
 ### 2. Positive Days vs Short-Term Returns
 Explanation: Compares the number of positive return days over a long window with short-term average returns. Captures mean-reversion vs short-term momentum.  
 `positive_days = ts_sum(returns > ts_mean(returns,20) ? 1 : 0,250);`  
