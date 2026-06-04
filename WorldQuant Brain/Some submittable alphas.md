@@ -50,3 +50,18 @@ quality: risk-adjusted returns
 `quality = rank(returns / (ts_std_dev(returns,20) + 0.000001));`  
 `alpha = alpha_core + 0.25 * flow + 0.25 * quality;`  
 `trade_when(abs(ts_delta(close,1)) > ts_mean(abs(ts_delta(close,1)),20), alpha, 0)`
+
+### 9. Recently increased volatility (news)
+```
+news =
+rank(ts_sum(vec_avg(nws12_afterhsz_sl),60));
+
+vol =
+power(
+    rank(ts_mean(volume,5)/ts_mean(volume,252)),
+    0.49
+);
+
+alpha =
+vol * (1 + news);
+```
