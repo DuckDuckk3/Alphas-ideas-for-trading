@@ -1,7 +1,7 @@
 # Good alphas
 Please NOTE that these alphas may not be submittable. These are just ingredients for you to combine with another "orthogonal" alpha or improve it to create a submittable alpha. I even utilize some of these and created submittable alphas. Good luck!
 
-## Volume / Trend
+## Volume / Trend 
 ### Short-term momentum based on recent returns:  
 `mom = rank(-ts_delta(close,5)) + 0.5 * rank(-ts_delta(close,2)) - 0.5 * rank(ts_mean(returns,5))`
 
