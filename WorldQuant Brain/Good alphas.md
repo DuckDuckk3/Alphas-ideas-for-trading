@@ -4,7 +4,7 @@ Please NOTE that these alphas may not be submittable. These are just ingredients
 ## Volume / Trend 
 ### Short-term momentum based on recent returns:  
 `mom = rank(-ts_delta(close,5)) + 0.5 * rank(-ts_delta(close,2)) - 0.5 * rank(ts_mean(returns,5))`
-
+ 
 ### Momentum using deviation from VWAP:  
 `alpha = ts_decay_linear(rank(-ts_delta((close - vwap)/vwap, 5)), 6)`
 
