@@ -1,6 +1,6 @@
 ## 1. The restaurant charges prices based on news.
 ### Hypothesis
-If a stock's price takes a long time to rise after news is released, it may have significant momentum to continue its strong upward trend. A long position would be advantageous in this case.  
+If a stock's price takes a long time to rise after news is released, it may have significant momentum to continue its strong upward trend. A long position would be advantageous in this case.   
 ### Deployment
 Use the news data field 'nws12_prez_4l' to implement the above idea. Fill the data gap with the ts_backfill operator and two years to ensure consistency of data coverage.  
 ### Suggestions for improvement
