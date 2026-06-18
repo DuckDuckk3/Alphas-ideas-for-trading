@@ -1,4 +1,4 @@
-## 1. Implied Volatility Spread as a predictor
+## 1. Implied Volatility Spread as a predictor 
 ### Hypothesis
 If the Call Open interest is higher than the Put Open interest, the stock may rise based on the intensity of the implied volatility spread or vice versa.
 ### Implementation
