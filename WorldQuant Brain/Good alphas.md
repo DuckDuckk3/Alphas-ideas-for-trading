@@ -223,3 +223,5 @@ intraday = close / open - 1;
 `power(rank(ts_mean(volume,5)/ts_mean(volume, 252)), 0.5)`
 ## Earnings Yield Momentum
 `group_rank(ts_rank(est_epsr/close, 60), industry)`
+
+`group_rank(ts_rank(operating_income / cap, 252), subindustry)`
