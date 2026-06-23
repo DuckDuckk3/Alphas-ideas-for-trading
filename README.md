@@ -2,7 +2,7 @@
 Here is all my knowledge accumulated through the process of working and learning economics, code, and beginning to write alphas.
 A comprehensive knowledge base for quantitative trading strategies and alpha development on the WorldQuant BRAIN platform.
 
-# This repository features:
+# This repository features: 
 ## Curated Alpha Ideas: 
 A collection of signals utilizing WorldQuant’s functional expression language, optimized for metrics like Sharpe ratio, Fitness, and Turnover.
 ## Platform Mastery: 
