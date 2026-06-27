@@ -3,7 +3,7 @@
 Select Alphas Choose 20 high-performing alphas from the same region (e.g., USA) to ensure consistency inuniverse coverage and performance behavior.  
 ## Step 2: 
 Assign a Custom Code Name After selecting the 20 alphas, assign a unique code name to your group.   
-Example: 321. This codewill be used to reference your selection in simulation.  
+Example: 321. This codewill be used to reference your selection in simulation.   
 ## Step 3:  
 Navigate to the Simulation Section Go to the Simulate tab from the top menu to begin building your Super Alpha.  
 ## Step 4:  
