@@ -6,7 +6,7 @@ Analyst
 News
 Option
 ## Example:
-EPS revision + News sentiment  
+EPS revision + News sentiment   
 Target price revision + IV skew  
 Recommendation change + Put-call ratio  
 EPS revision + News intensity  
