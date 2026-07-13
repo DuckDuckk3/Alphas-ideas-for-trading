@@ -84,7 +84,7 @@ EPS revision
 # Idea 7 — Revision Persistence
 
 ## Hypothesis
-
+ 
 Analyst revisions tend to exhibit persistence due to gradual information diffusion.
 
 ## Datasets
