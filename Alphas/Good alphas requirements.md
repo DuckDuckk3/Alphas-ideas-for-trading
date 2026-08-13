@@ -1,7 +1,7 @@
 # 101 Formulaic Alphas  
 Alpha 1  
 `rank(ts_arg_max(signed_power((returns < 0 ? ts_std_dev(returns,20) : close),2),5)) - 0.5`  
-Alpha 2  
+Alpha 2    
 `-1 * ts_corr(rank(ts_delta(log(volume),2)), rank((close-open)/open),6)`  
 Alpha 3  
 `-1 * ts_corr(rank(open), rank(volume),10)`  
